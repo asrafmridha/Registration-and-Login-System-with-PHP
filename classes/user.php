@@ -35,32 +35,66 @@
                        </div>';
                   }
               
-                  elseif(empty ($password)){
+            elseif(empty ($password)){
 
-                    echo   '<div class="alert alert-danger" role="alert">
-                           Password is required
-                           </div>';
-                      }
+            echo   '<div class="alert alert-danger" role="alert">
+                 Password is required
+                 </div>';
+                 }
 
                       elseif(empty ($cpassword)){
 
-                        echo   '<div class="alert alert-danger" role="alert">
-                              Confirm Password is required
-                               </div>';
-                          }
+                echo   '<div class="alert alert-danger" role="alert">
+                     Confirm Password is required
+                     </div>';
+                     }
 
-                      elseif(($password !=$cpassword)){
+                elseif(($password !=$cpassword)){
 
-                        echo   '<div class="alert alert-danger" role="alert">
-                               Password is not match
-                               </div>';
-                          }
+                echo   '<div class="alert alert-danger" role="alert">
+                     Password is not match
+                     </div>';
+                     }
+                else{
 
+                    $check= $this->checkEmailuserName($uName,$email);
+
+                    if($check==TRUE){
+                       echo '<div class="alert alert-danger" role="alert">
+                        Email or User Name alredy Exist
+                        </div>';
+
+                    }
+                    else{
+
+                        $dataadd= $this->con->query("INSERT INTO user (fName,uName,email,password,role,status) VALUES('$fName','$uName','$email','$password','$role','$status') ");
+
+                        if($dataadd){
+
+                            echo '<div class="alert alert-success" role="alert">
+                            Registration Successfully
+                          </div>';
+                        }
+                        else{
+
+                            echo '<div class="alert alert-danger" role="alert">
+                            Registration failed
+                          </div>';
+                        }
+
+
+                    }
+                }
 
            
                               
 
       }
+
+       function checkEmailuserName($uName,$email){
+
+        $this->con->query(("SELECT *FROM user WHERE uName='$uName' OR email='$email'"));
+       }
         
   }
 
