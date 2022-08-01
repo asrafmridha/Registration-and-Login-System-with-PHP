@@ -94,7 +94,7 @@
 
        function checkEmailuserName($uName,$email){
 
-       $result =$this->con->query(("SELECT *FROM user WHERE uName='$uName' OR email='$email'"));
+       $result=$this->con->query(("SELECT *FROM user WHERE uName='$uName' OR email='$email'"));
         if($result->num_rows>0){
                 
           return true;
@@ -104,6 +104,44 @@
 
           return false;
         }
+       }
+
+
+       function login($data){
+        $uNameEmail=$data['uName'];
+        $password=$data['password'];
+         $password=md5($password);
+        if(empty($uNameEmail)){
+
+          echo '<div class="alert alert-danger" role="alert">
+          User name nedded
+        </div>';
+
+        }
+        elseif(empty($password)){
+
+          echo '<div class="alert alert-danger" role="alert">
+          Password needed
+        </div>';
+
+        }
+        else {
+
+          $result=$this->con->query("SELECT *FROM user WHERE ( uName='$uNameEmail' OR email='$uNameEmail') AND password='$password' AND status='1'  ");
+          if($result->num_rows>0){
+
+         header("location : dashbord.php");
+          }else{
+
+            header("location : login.php");
+
+          }
+        }
+
+       
+        
+
+
        }
         
   }

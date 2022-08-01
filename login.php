@@ -32,9 +32,9 @@
 
       <?php 
 
-    if(isset($_POST['submit'])){
+    if(isset($_POST['login'])){
 
-         $user->registration($_POST);
+         $user->login($_POST);
     }
 
 

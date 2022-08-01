@@ -37,16 +37,7 @@
          $user->registration($_POST);
     }
 
-
-  
-
-
-      
-      
-      
-      
-      
-      
+ 
       ?>
 
 

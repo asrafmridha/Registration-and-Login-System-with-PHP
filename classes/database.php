@@ -4,7 +4,7 @@
        protected $con;
         function __construct()
         {
-           $res= $this->con=new mysqli( "localhost", "root","","loginregisterphp");
+           $result= $this->con=new mysqli( "localhost", "root","","loginregisterphp");
 
          
         }
