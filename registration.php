@@ -1,7 +1,9 @@
 <?php  
-  include "classes/database.php";
+  include "classes/user.php";
 
-  $d= new Database;
+  $database= new Database;
+
+  $user= new User;
 
 ?>
 
@@ -28,17 +30,36 @@
    
       <div class="col-md-6 offset-md-3">
 
+      <?php 
+
+    if(isset($_POST['submit'])){
+
+         $user->registration($_POST);
+    }
+
+
+  
+
+
+      
+      
+      
+      
+      
+      
+      ?>
+
 
       <form method="POST" >
   <div class="form-group">
     <label for="exampleInputEmail1">Full Name</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Full Name"  name="name">
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Full Name"  name="fName">
     
   </div>
 
   <div class="form-group">
     <label for="exampleInputEmail1">User Name</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your User Name"  name="name">
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your User Name"  name="uName">
     
   </div>
 
@@ -50,12 +71,12 @@
 
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="email">
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
   </div>
 
   <div class="form-group">
     <label for="exampleInputPassword1">Confirm Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password" name="email">
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password" name="cpassword">
   </div>
 
   

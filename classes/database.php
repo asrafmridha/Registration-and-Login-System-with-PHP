@@ -6,7 +6,7 @@
         {
            $res= $this->con=new mysqli( "localhost", "root","","loginregisterphp");
 
-           
+         
         }
 
 
