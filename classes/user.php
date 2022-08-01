@@ -59,14 +59,15 @@
 
                     $check= $this->checkEmailuserName($uName,$email);
 
-                    if($check==TRUE){
+                    if($check){
                        echo '<div class="alert alert-danger" role="alert">
                         Email or User Name alredy Exist
                         </div>';
 
                     }
                     else{
-
+                          
+                         $password=md5($password);
                         $dataadd= $this->con->query("INSERT INTO user (fName,uName,email,password,role,status) VALUES('$fName','$uName','$email','$password','$role','$status') ");
 
                         if($dataadd){
@@ -93,7 +94,16 @@
 
        function checkEmailuserName($uName,$email){
 
-        $this->con->query(("SELECT *FROM user WHERE uName='$uName' OR email='$email'"));
+       $result =$this->con->query(("SELECT *FROM user WHERE uName='$uName' OR email='$email'"));
+        if($result->num_rows>0){
+                
+          return true;
+
+        }
+        else{
+
+          return false;
+        }
        }
         
   }
